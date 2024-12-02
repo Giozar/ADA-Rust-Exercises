@@ -26,36 +26,33 @@ fn main() {
 }
 
 fn add_one(mut arr: Vec<u32>, tam: u32) -> Vec<u32> {
-    let mut n: u32 = tam;
 
-    if n > 0 {
-        arr[n as usize - 1] = 1;
-        n -= 1;
-
-        println!("En proceso de pon 1 es: {:?}", arr);
-
-        permutation(&mut arr, tam);
-
-        return add_one(arr, n);
+    if tam == 0 {
+        return  arr;
     }
 
-    arr
+    arr[tam as usize - 1] = 1;
+   
+    println!("En proceso de pon 1 es: {:?}", arr);
+
+    permutation(arr.clone(), tam);
+
+    return add_one(arr, tam -1 );
 }
 
-fn permutation(arr: &mut Vec<u32>, tam: u32) -> &mut Vec<u32> {
-
+fn permutation(mut arr: Vec<u32>, tam: u32) -> Vec<u32> {
     if tam <= 1 {
         return arr;
     }
-    let mut m: usize = (tam - 1) as usize;
-    
-    let aux = arr[m];
-    arr[m] = arr[m - 1];
-    arr[m - 1] = aux;
 
-    m -= 1;
+    let m: usize = (tam - 1) as usize;
 
-    println!("En permutar es: {:?}", arr);
+    if m > 0 {
+        let aux = arr[m];
+        arr[m] = arr[m - 1];
+        arr[m - 1] = aux;
+        println!("En permutar es: {:?}", arr);
+    }
 
-    return permutation(arr, m as u32);
+    permutation(arr, tam - 1)
 }
