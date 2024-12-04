@@ -1,0 +1,6 @@
+[package]
+name = "transiciones-binarias"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
